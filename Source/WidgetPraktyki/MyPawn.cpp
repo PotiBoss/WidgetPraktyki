@@ -15,7 +15,14 @@ AMyPawn::AMyPawn()
 void AMyPawn::BeginPlay()
 {
 	Super::BeginPlay();
+
+	APlayerController* MyController = Cast<APlayerController>(GetController());
 	
+	if (MyController)
+	{
+		MyController->bShowMouseCursor = true;
+	}
+
 }
 
 // Called every frame
