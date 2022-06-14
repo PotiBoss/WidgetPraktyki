@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-//#include "PaperSprite.h"
+#include "PaperSprite.h"
 #include "MonsterBase.generated.h"
 
 
@@ -21,8 +21,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	//UPROPERTY(EditAnywhere)
-	//UPaperSprite* MySprite;
+	UPROPERTY(EditAnywhere)
+	UPaperSprite* MySprite;
 
 
 public:	
