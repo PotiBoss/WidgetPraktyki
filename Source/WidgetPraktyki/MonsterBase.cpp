@@ -2,6 +2,8 @@
 
 
 #include "MonsterBase.h"
+#include "PaperSpriteComponent.h"
+#include "Blueprint/UserWidget.h"
 
 // Sets default values
 AMonsterBase::AMonsterBase()
@@ -9,6 +11,13 @@ AMonsterBase::AMonsterBase()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	if(EnemyWidget)
+	{
+		EnemyWidget->AddToViewport();
+	}
+	SpriteComponent = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("Enemy Sprite Component"));
+
+	SetRootComponent(SpriteComponent);
 }
 
 // Called when the game starts or when spawned

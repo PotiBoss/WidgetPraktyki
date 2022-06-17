@@ -13,5 +13,14 @@ UCLASS()
 class WIDGETPRAKTYKI_API AMyPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 };
+
+inline void AMyPlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+	
+}

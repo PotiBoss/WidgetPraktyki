@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "PaperSprite.h"
 #include "MonsterBase.generated.h"
+
 
 
 UCLASS()
@@ -20,10 +20,12 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
+	UPROPERTY(EditAnywhere)
+	class UPaperSpriteComponent* SpriteComponent;
 
 	UPROPERTY(EditAnywhere)
-	UPaperSprite* MySprite;
-
+	class UUserWidget* EnemyWidget;
 
 public:	
 	// Called every frame

@@ -3,6 +3,8 @@
 
 #include "MyPawn.h"
 
+#include "Blueprint/UserWidget.h"
+
 // Sets default values
 AMyPawn::AMyPawn()
 {
@@ -16,11 +18,18 @@ void AMyPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Enables cursor to be visible
 	APlayerController* MyController = Cast<APlayerController>(GetController());
-	
 	if (MyController)
 	{
 		MyController->bShowMouseCursor = true;
+	}
+	
+	if(GameWidget)
+	{
+		CreateWidget(this, GameWidget, FName(TEXT("GameWidget")));
+		GameWidget->AddToViewport();
+		UE_LOG(LogTemp, Error, TEXT("HUD"));
 	}
 
 }

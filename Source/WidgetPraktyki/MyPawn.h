@@ -19,6 +19,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditDefaultsOnly)
+	class UUserWidget* GameWidget;
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
