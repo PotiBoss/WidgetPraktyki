@@ -25,9 +25,9 @@ void AMyPawn::BeginPlay()
 		MyController->bShowMouseCursor = true;
 	}
 	
-	if(GameWidget)
+	if(GameWidgetBase)
 	{
-		CreateWidget(this, GameWidget, FName(TEXT("GameWidget")));
+		GameWidget = CreateWidget(GetWorld(), GameWidgetBase);
 		GameWidget->AddToViewport();
 		UE_LOG(LogTemp, Error, TEXT("HUD"));
 	}

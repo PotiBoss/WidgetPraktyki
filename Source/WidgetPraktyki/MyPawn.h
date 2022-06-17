@@ -19,8 +19,10 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly)
-	class UUserWidget* GameWidget;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", Meta = (BlueprintProtected = "true"))
+	TSubclassOf<class UUserWidget> GameWidgetBase;
+	
+	UUserWidget* GameWidget;
 	
 public:	
 	// Called every frame
