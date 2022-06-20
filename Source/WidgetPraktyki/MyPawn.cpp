@@ -29,7 +29,6 @@ void AMyPawn::BeginPlay()
 	{
 		GameWidget = CreateWidget(GetWorld(), GameWidgetBase);
 		GameWidget->AddToViewport();
-		UE_LOG(LogTemp, Error, TEXT("HUD"));
 	}
 
 }
@@ -45,6 +44,5 @@ void AMyPawn::Tick(float DeltaTime)
 void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 

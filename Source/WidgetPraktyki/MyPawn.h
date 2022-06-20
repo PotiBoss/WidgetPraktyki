@@ -21,7 +21,8 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", Meta = (BlueprintProtected = "true"))
 	TSubclassOf<class UUserWidget> GameWidgetBase;
-	
+
+	UPROPERTY()
 	UUserWidget* GameWidget;
 	
 public:	
