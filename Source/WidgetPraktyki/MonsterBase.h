@@ -24,9 +24,6 @@ protected:
 	UPROPERTY(EditAnywhere)
 	class UPaperSpriteComponent* SpriteComponent;
 
-	UPROPERTY(EditAnywhere)
-	class UUserWidget* EnemyWidget;
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
