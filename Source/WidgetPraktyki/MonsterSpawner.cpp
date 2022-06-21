@@ -20,9 +20,11 @@ void AMonsterSpawner::BeginPlay()
 	// checks if we setup 3 monsters
 	if(MonsterArray.Num() < 3) {return;}
 
-	MonsterArray[0] = GetWorld()->SpawnActor<AMonsterBase>(LeftMonsterPos, LeftMonsterRot);
-	MonsterArray[1] = GetWorld()->SpawnActor<AMonsterBase>(MidMonsterPos, MidMonsterRot);
-	MonsterArray[2] = GetWorld()->SpawnActor<AMonsterBase>(RightMonsterPos, RightMonsterRot);
+	FActorSpawnParameters SpawnParams;
+
+	MonsterArray[0] = GetWorld()->SpawnActor<AMonsterBase>(LeftMonsterPos + GetTransform().GetLocation(), LeftMonsterRot, SpawnParams);
+	MonsterArray[1] = GetWorld()->SpawnActor<AMonsterBase>(MidMonsterPos + GetTransform().GetLocation(), MidMonsterRot, SpawnParams);
+	MonsterArray[2] = GetWorld()->SpawnActor<AMonsterBase>(RightMonsterPos + GetTransform().GetLocation(), RightMonsterRot, SpawnParams);
 }
 
 // Called every frame
