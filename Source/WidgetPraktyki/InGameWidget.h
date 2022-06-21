@@ -31,13 +31,87 @@ protected:
 	UPROPERTY(EditAnywhere)
 	class UTexture2D* MonsterBase;
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	class UImage* MonsterImageLeft;
-	UPROPERTY(meta = (BindWidget))
-	class UImage* MonsterImageMid;
-	UPROPERTY(meta = (BindWidget))
-	class UImage* MonsterImageRight;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* MonsterImageMid;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* MonsterImageRight;
 
-	FTimerHandle TimerHandle;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* BackgroundCave;
+
+	// WIDGET BUTTONS
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	class UButton* ButtonBowLeft;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonBowMid;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonBowRight;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonCombatLeft;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonCombatMid;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonCombatRight;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonInventory;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonPause;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonSwordLeft;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonSwordMid;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonSwordRight;
+
+	// IMAGES/BACKGROUNDS
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageBowLeft;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageBowLeftbgn;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageBowMid;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageBowMidBgn;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageBowRight;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageBowRightBgn;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageCombatLeft;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageCombatMid;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageCombatRight;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageInventory;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImagePause;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageSwordLeft;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageSwordLeftbgn;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageSwordMid;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageSwordMidBgn;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageSwordRight;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageSwordRightBgn;
+
+	// TEXT
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	class UTextBlock* TextCombatLeft;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	class UTextBlock* TextCombatMid;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	class UTextBlock* TextCombatRight;
+	
+
+	FTimerHandle TimerHandleLeft;
+	FTimerHandle TimerHandleMid;
+	FTimerHandle TimerHandleRight;
 	FTimerDelegate TimerDelegate;
 };
