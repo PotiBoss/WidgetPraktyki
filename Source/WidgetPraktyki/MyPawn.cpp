@@ -4,6 +4,7 @@
 #include "MyPawn.h"
 
 #include "Blueprint/UserWidget.h"
+#include "Components/Overlay.h"
 
 // Sets default values
 AMyPawn::AMyPawn()
@@ -28,7 +29,7 @@ void AMyPawn::BeginPlay()
 	if(GameWidgetBase)
 	{
 		GameWidget = CreateWidget(GetWorld(), GameWidgetBase);
-		GameWidget->AddToViewport();
+		//GameWidget->AddToViewport();
 	}
 
 }

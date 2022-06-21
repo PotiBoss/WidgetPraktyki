@@ -33,6 +33,13 @@ public:
 
 	void ApplyUIChange(TSubclassOf<class UUserWidget> Widget);
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UUserWidget* InGameWidget;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UUserWidget* InventoryWidget;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UUserWidget* PauseWidget;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -45,6 +52,9 @@ protected:
 	TSubclassOf<class UUserWidget> InventoryClass;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", Meta = (BlueprintProtected = "true"))
 	TSubclassOf<class UUserWidget> PauseClass;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
+	class UOverlay* MyOverlay;
 
 	UPROPERTY()
 	class UUserWidget* CurrentWidget;
