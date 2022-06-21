@@ -25,11 +25,9 @@ public:
 protected:
 	UFUNCTION(BlueprintCallable)
 	void SpawnNewMonster(uint8 MonsterIndex);
-	
-	TArray<bool> MonsterArray = {false, false, false};
 
 	UPROPERTY(EditAnywhere)
-	class UTexture2D* MonsterBase;
+	TArray<class UTexture2D*> MonsterArray;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	class UImage* MonsterImageLeft;

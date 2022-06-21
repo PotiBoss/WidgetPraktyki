@@ -43,12 +43,13 @@ void UInGameWidget::OnWidgetFocus()
 
 void UInGameWidget::SpawnNewMonster(uint8 MonsterIndex)
 {
-	//MonsterArray[MonsterIndex] = true;
+	if(MonsterArray.Num() < 1) {return;}
+	const uint8 RandomMonsterIndex = FMath::RandRange(0, MonsterArray.Num() - 1);
 	
 	switch(MonsterIndex)
 	{
 	case 0:
-		MonsterImageLeft->SetBrushFromTexture(MonsterBase);
+		MonsterImageLeft->SetBrushFromTexture(MonsterArray[RandomMonsterIndex]);
 		MonsterImageLeft->SetVisibility(ESlateVisibility::Visible);
 		ButtonCombatLeft->SetIsEnabled(true);
 		ButtonCombatLeft->SetVisibility(ESlateVisibility::Visible);
@@ -56,7 +57,7 @@ void UInGameWidget::SpawnNewMonster(uint8 MonsterIndex)
 		TextCombatLeft->SetVisibility(ESlateVisibility::Visible);
 		break;
 	case 1:
-		MonsterImageMid->SetBrushFromTexture(MonsterBase);
+		MonsterImageMid->SetBrushFromTexture(MonsterArray[RandomMonsterIndex]);
 		MonsterImageMid->SetVisibility(ESlateVisibility::Visible);
 		ButtonCombatMid->SetIsEnabled(true);
 		ButtonCombatMid->SetVisibility(ESlateVisibility::Visible);
@@ -64,7 +65,7 @@ void UInGameWidget::SpawnNewMonster(uint8 MonsterIndex)
 		TextCombatMid->SetVisibility(ESlateVisibility::Visible);
 		break;
 	case 2:
-		MonsterImageRight->SetBrushFromTexture(MonsterBase);
+		MonsterImageRight->SetBrushFromTexture(MonsterArray[RandomMonsterIndex]);
 		MonsterImageRight->SetVisibility(ESlateVisibility::Visible);
 		ButtonCombatRight->SetIsEnabled(true);
 		ButtonCombatRight->SetVisibility(ESlateVisibility::Visible);
@@ -72,7 +73,7 @@ void UInGameWidget::SpawnNewMonster(uint8 MonsterIndex)
 		TextCombatRight->SetVisibility(ESlateVisibility::Visible);
 		break;
 	default:
-		MonsterImageLeft->SetBrushFromTexture(MonsterBase);
+		MonsterImageLeft->SetBrushFromTexture(MonsterArray[RandomMonsterIndex]);
 		MonsterImageLeft->SetVisibility(ESlateVisibility::Visible);
 		ButtonCombatLeft->SetIsEnabled(true);
 		ButtonCombatLeft->SetVisibility(ESlateVisibility::Visible);
