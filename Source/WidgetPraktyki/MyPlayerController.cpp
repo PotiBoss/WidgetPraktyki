@@ -8,7 +8,6 @@
 AMyPlayerController::AMyPlayerController()
 {
 	UIStateEnum = UI_InGame;
-	
 }
 
 void AMyPlayerController::BeginPlay()
@@ -33,6 +32,18 @@ void AMyPlayerController::UpdateUI()
 		break;
 	case UI_Inventory:
 		ApplyUIChange(InventoryClass);
+		break;
+	case UI_Options:
+		ApplyUIChange(OptionsClass);
+		break;
+	case UI_OptionsExtended:
+		ApplyUIChange(OptionsExtendedClass);
+		break;
+	case UI_ReadMe:
+		ApplyUIChange(ReadMeClass);
+		break;
+	case UI_Credits:
+		ApplyUIChange(CreditsClass);
 		break;
 	default:
 		ApplyUIChange(GameHUDClass);

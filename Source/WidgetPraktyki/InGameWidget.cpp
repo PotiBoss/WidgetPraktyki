@@ -139,5 +139,4 @@ void UInGameWidget::RespawnNewMonster()
 	ButtonCombatRight->SetVisibility(ESlateVisibility::Visible);
 	ImageCombatRight->SetVisibility(ESlateVisibility::Visible);
 	TextCombatRight->SetVisibility(ESlateVisibility::Visible);
-	
 }

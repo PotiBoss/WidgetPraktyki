@@ -11,7 +11,11 @@ enum EUIState
 {
 	UI_InGame,
 	UI_Pause,
-	UI_Inventory
+	UI_Inventory,
+	UI_Options,
+	UI_OptionsExtended,
+	UI_ReadMe,
+	UI_Credits
 };
 
 UCLASS()
@@ -45,6 +49,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	UUserWidget* PauseWidget;
 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -55,9 +60,15 @@ protected:
 	TSubclassOf<class UUserWidget> InventoryClass;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", Meta = (BlueprintProtected = "true"))
 	TSubclassOf<class UUserWidget> PauseClass;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
-	class UOverlay* MyOverlay;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", Meta = (BlueprintProtected = "true"))
+	TSubclassOf<class UUserWidget> OptionsClass;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", Meta = (BlueprintProtected = "true"))
+	TSubclassOf<class UUserWidget> OptionsExtendedClass;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", Meta = (BlueprintProtected = "true"))
+	TSubclassOf<class UUserWidget> ReadMeClass;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", Meta = (BlueprintProtected = "true"))
+	TSubclassOf<class UUserWidget> CreditsClass;
+	
 
 	UPROPERTY()
 	class UUserWidget* CurrentWidget;
