@@ -20,7 +20,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void OnGameWidgetQuit(TArray<uint8> MonsterArray);
 
-protected:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<uint8> MonsterArrayID;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bFirstInitGame = true;
+
+
 };

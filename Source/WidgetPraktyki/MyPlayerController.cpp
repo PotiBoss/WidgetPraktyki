@@ -8,7 +8,7 @@
 AMyPlayerController::AMyPlayerController()
 {
 	UIStateEnum = UI_InGame;
-	UpdateUI();
+	
 }
 
 void AMyPlayerController::BeginPlay()

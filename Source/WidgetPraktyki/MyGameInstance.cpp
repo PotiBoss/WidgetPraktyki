@@ -5,9 +5,13 @@
 
 UMyGameInstance::UMyGameInstance()
 {
+	MonsterArrayID = {0,0,0};
 }
 
 void UMyGameInstance::OnGameWidgetQuit(TArray<uint8> MonsterArray)
 {
-	MonsterArrayID = MonsterArray;
+	for(int i = 0; i < MonsterArray.Num(); i++)
+	{
+		MonsterArrayID[i] = MonsterArray[i];
+	}
 }

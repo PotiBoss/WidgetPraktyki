@@ -25,12 +25,6 @@ void AMyPawn::BeginPlay()
 	{
 		MyController->bShowMouseCursor = true;
 	}
-	
-	if(GameWidgetBase)
-	{
-		GameWidget = CreateWidget(GetWorld(), GameWidgetBase);
-		//GameWidget->AddToViewport();
-	}
 
 }
 

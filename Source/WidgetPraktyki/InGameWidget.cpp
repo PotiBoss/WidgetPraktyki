@@ -36,6 +36,8 @@ void UInGameWidget::MonsterKilled(uint8 MonsterIndex)
 
 void UInGameWidget::OnWidgetFocus()
 {
+	MonsterArrayID = {0,0,0};
+	
 	SpawnNewMonster(0);
 	SpawnNewMonster(1);
 	SpawnNewMonster(2);
@@ -43,6 +45,7 @@ void UInGameWidget::OnWidgetFocus()
 
 void UInGameWidget::OnWidgetFocusAgain(TArray<uint8> MonsterArrayCopy)
 {
+	MonsterArrayID = {0,0,0};
 	MonsterArrayID[0] = MonsterArrayCopy[0];
 	MonsterArrayID[1] = MonsterArrayCopy[1];
 	MonsterArrayID[2] = MonsterArrayCopy[2];
@@ -55,7 +58,7 @@ void UInGameWidget::OnWidgetFocusAgain(TArray<uint8> MonsterArrayCopy)
 void UInGameWidget::SpawnNewMonster(uint8 MonsterIndex)
 {
 	if(MonsterArray.Num() < 1) {return;}
-	const uint8 RandomMonsterIndex = FMath::RandRange(0, MonsterArray.Num() - 1);
+	uint8 RandomMonsterIndex = FMath::RandRange(0, MonsterArray.Num() - 1);
 	
 	switch(MonsterIndex)
 	{

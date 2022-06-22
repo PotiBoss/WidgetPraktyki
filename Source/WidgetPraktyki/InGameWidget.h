@@ -15,7 +15,6 @@ class WIDGETPRAKTYKI_API UInGameWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-
 	UFUNCTION(BlueprintCallable)
 	void MonsterKilled(uint8 MonsterIndex);
 
@@ -25,7 +24,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void OnWidgetFocusAgain(TArray<uint8> MonsterArrayCopy);
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<uint8> MonsterArrayID;
 
 protected:
@@ -37,9 +36,6 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	float RespawnTime = 1.0f;
-
-	UPROPERTY(BlueprintReadWrite , meta = (BindWidget))
-	bool bFirstInit = true;
 	
 	UPROPERTY(EditAnywhere)
 	TArray<class UTexture2D*> MonsterArray;
