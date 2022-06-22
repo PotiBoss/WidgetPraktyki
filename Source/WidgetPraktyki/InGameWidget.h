@@ -22,10 +22,25 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void OnWidgetFocus();
 
+	UFUNCTION(BlueprintCallable)
+	void OnWidgetFocusAgain(TArray<uint8> MonsterArrayCopy);
+
+	UPROPERTY(EditAnywhere)
+	TArray<uint8> MonsterArrayID;
+
 protected:
 	UFUNCTION(BlueprintCallable)
 	void SpawnNewMonster(uint8 MonsterIndex);
 
+	UFUNCTION(BlueprintCallable)
+	void RespawnNewMonster();
+
+	UPROPERTY(EditAnywhere)
+	float RespawnTime = 1.0f;
+
+	UPROPERTY(BlueprintReadWrite , meta = (BindWidget))
+	bool bFirstInit = true;
+	
 	UPROPERTY(EditAnywhere)
 	TArray<class UTexture2D*> MonsterArray;
 
@@ -113,3 +128,4 @@ protected:
 	FTimerHandle TimerHandleRight;
 	FTimerDelegate TimerDelegate;
 };
+

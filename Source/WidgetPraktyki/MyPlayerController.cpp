@@ -7,7 +7,7 @@
 
 AMyPlayerController::AMyPlayerController()
 {
-	UIState = UI_InGame;
+	UIStateEnum = UI_InGame;
 	UpdateUI();
 }
 
@@ -23,7 +23,7 @@ void AMyPlayerController::UpdateUI()
 		CurrentWidget->RemoveFromParent();
 	}
 
-	switch(UIState)
+	switch(UIStateEnum)
 	{
 	case UI_InGame:
 		ApplyUIChange(GameHUDClass);
@@ -42,12 +42,12 @@ void AMyPlayerController::UpdateUI()
 
 uint8 AMyPlayerController::GetUIState()
 {
-	return UIState;
+	return UIStateEnum;
 }
 
-void AMyPlayerController::ChangeUIState(uint8 NewUIState)
+void AMyPlayerController::ChangeUIState(TEnumAsByte<EUIState> EnumUIState)
 {
-	UIState = NewUIState;
+	UIStateEnum = EnumUIState;
 	UpdateUI();
 }
 

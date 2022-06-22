@@ -6,21 +6,26 @@
 #include "GameFramework/PlayerController.h"
 #include "MyPlayerController.generated.h"
 
-/**
- * 
- */
+UENUM()
+enum EUIState
+{
+	UI_InGame,
+	UI_Pause,
+	UI_Inventory
+};
+
 UCLASS()
+
+
 class WIDGETPRAKTYKI_API AMyPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
 public:
-	enum EUIState : uint8
-	{
-		UI_InGame,
-		UI_Pause,
-		UI_Inventory
-	};
+
+
+	UPROPERTY(BlueprintReadWrite)
+	TEnumAsByte<EUIState> UIStateEnum;
 
 	AMyPlayerController();
 
@@ -29,7 +34,7 @@ public:
 	uint8 GetUIState();
 
 	UFUNCTION(BlueprintCallable, Category = "UI")
-	void ChangeUIState(uint8 NewUIState);
+	void ChangeUIState(TEnumAsByte<EUIState> EnumUIState);
 
 	void ApplyUIChange(TSubclassOf<class UUserWidget> Widget);
 
@@ -43,8 +48,6 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	uint8 UIState;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", Meta = (BlueprintProtected = "true"))
 	TSubclassOf<class UUserWidget> GameHUDClass;
