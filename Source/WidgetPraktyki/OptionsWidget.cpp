@@ -3,8 +3,21 @@
 
 #include "OptionsWidget.h"
 
+#include "MyGameInstance.h"
+#include "MyPlayerController.h"
 #include "Components/Button.h"
 #include "Components/Image.h"
+#include "Components/Slider.h"
+
+void UOptionsWidget::InitWidget()
+{
+	GameInstance = Cast<UMyGameInstance>(GetGameInstance());
+
+	SliderEffects->SetValue(GameInstance->EffectsFloat);
+	SliderMusic->SetValue(GameInstance->MusicFloat);
+	ProgressBarEffects->SetPercent(SliderEffects->Value);
+	ProgressBarMusic->SetPercent(SliderMusic->Value);
+}
 
 void UOptionsWidget::OnHoverButton(UImage* ButtonFrame, UButton* Button, bool bCheck)
 {
@@ -12,6 +25,21 @@ void UOptionsWidget::OnHoverButton(UImage* ButtonFrame, UButton* Button, bool bC
 
 	UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
 	ButtonImage->SetVisibility(ESlateVisibility::Visible);
+}
+
+void UOptionsWidget::OnHoverBack(UImage* ButtonBgn)
+{
+	ButtonBgn->SetColorAndOpacity(FLinearColor(0.8f, 0.8f, 0.8f)); // tinted
+}
+
+void UOptionsWidget::OnUnhoverBack(UImage* ButtonBgn)
+{
+	ButtonBgn->SetColorAndOpacity(FLinearColor(1.0f, 1.0f, 1.0f)); // normal
+}
+
+void UOptionsWidget::ClickedBack()
+{
+	Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController())->ChangeUIState(UI_Pause);
 }
 
 void UOptionsWidget::OnUnhoverButton(UImage* ButtonFrame, UButton* Button, bool bCheck)
@@ -54,5 +82,19 @@ void UOptionsWidget::InverseYClicked(UButton* Button)
 		bInverseY = true;
 		UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
 		ButtonImage->SetVisibility(ESlateVisibility::Visible);
+	}
+}
+
+void UOptionsWidget::SliderChange(UProgressBar* ProgressBar, float SliderValue)
+{
+	ProgressBar->SetPercent(SliderValue);
+}
+
+void UOptionsWidget::SliderSave()
+{
+	if(GameInstance)
+	{
+		GameInstance->EffectsFloat = SliderEffects->GetValue();
+		GameInstance->MusicFloat = SliderMusic->GetValue();
 	}
 }

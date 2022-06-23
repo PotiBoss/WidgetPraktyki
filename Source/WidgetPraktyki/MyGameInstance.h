@@ -26,5 +26,13 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	bool bFirstInitGame = true;
 
+	// OPTIONS
+	UPROPERTY(BlueprintReadWrite)
+	float EffectsFloat = 0.0f;
+
+	UPROPERTY(BlueprintReadWrite)
+	float MusicFloat = 0.0f;
+	
+
 
 };
