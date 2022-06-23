@@ -22,17 +22,23 @@ class WIDGETPRAKTYKI_API UOptionsWidget : public UUserWidget
 
 protected:
 	UFUNCTION(BlueprintCallable)
-	void OnHoverButton(UImage* ButtonFrame, UButton* Button);
+	void OnHoverButton(UImage* ButtonFrame, UButton* Button, bool bCheck);
 
 	UFUNCTION(BlueprintCallable)
-	void OnUnhoverButton(UImage* ButtonFrame, UButton* Button);
+	void OnUnhoverButton(UImage* ButtonFrame, UButton* Button, bool bCheck);
 
 	UFUNCTION(BlueprintCallable)
-	void HDRumbleClicked();
+	void HDRumbleClicked(UButton* Button);
 
+	UFUNCTION(BlueprintCallable)
+	void InverseYClicked(UButton* Button);
 
+	
 	UPROPERTY(BlueprintReadWrite)
 	bool bHDRumble = false;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bInverseY = false;
 	
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UImage* ImageBackgroundCave;

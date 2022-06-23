@@ -6,7 +6,7 @@
 #include "Components/Button.h"
 #include "Components/Image.h"
 
-void UOptionsWidget::OnHoverButton(UImage* ButtonFrame, UButton* Button)
+void UOptionsWidget::OnHoverButton(UImage* ButtonFrame, UButton* Button, bool bCheck)
 {
 	ButtonFrame->SetColorAndOpacity(FLinearColor(0.0f, 0.0f, 0.0f)); // black
 
@@ -14,25 +14,45 @@ void UOptionsWidget::OnHoverButton(UImage* ButtonFrame, UButton* Button)
 	ButtonImage->SetVisibility(ESlateVisibility::Visible);
 }
 
-void UOptionsWidget::OnUnhoverButton(UImage* ButtonFrame, UButton* Button)
+void UOptionsWidget::OnUnhoverButton(UImage* ButtonFrame, UButton* Button, bool bCheck)
 {
 	ButtonFrame->SetColorAndOpacity(FLinearColor(1.0f, 1.0f, 1.0f)); // normal
 
-	if(!bHDRumble)
+	if(!bCheck)
 	{
 		UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
 		ButtonImage->SetVisibility(ESlateVisibility::Collapsed);
 	}
 }
 
-void UOptionsWidget::HDRumbleClicked()
+void UOptionsWidget::HDRumbleClicked(UButton* Button)
 {
 	if(bHDRumble)
 	{
 		bHDRumble = false;
+		UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
+		ButtonImage->SetVisibility(ESlateVisibility::Collapsed);
 	}
 	else
 	{
 		bHDRumble = true;
+		UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
+		ButtonImage->SetVisibility(ESlateVisibility::Visible);
+	}
+}
+
+void UOptionsWidget::InverseYClicked(UButton* Button)
+{
+	if(bInverseY)
+	{
+		bInverseY = false;
+		UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
+		ButtonImage->SetVisibility(ESlateVisibility::Collapsed);
+	}
+	else
+	{
+		bInverseY = true;
+		UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
+		ButtonImage->SetVisibility(ESlateVisibility::Visible);
 	}
 }
