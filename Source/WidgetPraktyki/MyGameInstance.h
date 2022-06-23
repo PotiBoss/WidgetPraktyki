@@ -32,7 +32,17 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	float MusicFloat = 0.0f;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bHDRumble = false;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bHDRumbleStrong = false;
 	
-
-
+	UPROPERTY(BlueprintReadWrite)
+	bool bHDRumbleStronger = false;
+	
+	UPROPERTY(BlueprintReadWrite)
+	bool bInverseY = false;
+	
 };

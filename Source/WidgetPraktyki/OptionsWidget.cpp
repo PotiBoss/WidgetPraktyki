@@ -17,6 +17,40 @@ void UOptionsWidget::InitWidget()
 	SliderMusic->SetValue(GameInstance->MusicFloat);
 	ProgressBarEffects->SetPercent(SliderEffects->Value);
 	ProgressBarMusic->SetPercent(SliderMusic->Value);
+
+	InitButtons();
+	
+}
+
+void UOptionsWidget::InitButtons()
+{
+	if(GameInstance)
+	{
+		bHDRumble = GameInstance->bHDRumble;
+		bInverseY = GameInstance->bInverseY;
+	}
+
+	if(bHDRumble)
+	{
+		UImage* ButtonImage = Cast<UImage>(ButtonHDRumble->GetChildAt(0));
+		ButtonImage->SetVisibility(ESlateVisibility::Visible);
+	}
+	else
+	{
+		UImage* ButtonImage = Cast<UImage>(ButtonHDRumble->GetChildAt(0));
+		ButtonImage->SetVisibility(ESlateVisibility::Collapsed);
+	}
+
+	if(bInverseY)
+	{
+		UImage* ButtonImage = Cast<UImage>(ButtonInverseY->GetChildAt(0));
+		ButtonImage->SetVisibility(ESlateVisibility::Visible);
+	}
+	else
+	{
+		UImage* ButtonImage = Cast<UImage>(ButtonInverseY->GetChildAt(0));
+		ButtonImage->SetVisibility(ESlateVisibility::Collapsed);
+	}
 }
 
 void UOptionsWidget::OnHoverButton(UImage* ButtonFrame, UButton* Button, bool bCheck)
@@ -67,6 +101,11 @@ void UOptionsWidget::HDRumbleClicked(UButton* Button)
 		UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
 		ButtonImage->SetVisibility(ESlateVisibility::Visible);
 	}
+
+	if(GameInstance)
+	{
+		GameInstance->bHDRumble = bHDRumble;
+	}
 }
 
 void UOptionsWidget::InverseYClicked(UButton* Button)
@@ -82,6 +121,11 @@ void UOptionsWidget::InverseYClicked(UButton* Button)
 		bInverseY = true;
 		UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
 		ButtonImage->SetVisibility(ESlateVisibility::Visible);
+	}
+
+	if(GameInstance)
+	{
+		GameInstance->bInverseY = bInverseY;
 	}
 }
 

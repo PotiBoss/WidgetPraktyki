@@ -26,6 +26,9 @@ class WIDGETPRAKTYKI_API UOptionsWidget : public UUserWidget
 protected:
 	UFUNCTION(BlueprintCallable)
 	void InitWidget();
+
+	UFUNCTION()
+	void InitButtons();
 	
 	UFUNCTION(BlueprintCallable)
 	void OnHoverButton(UImage* ButtonFrame, UButton* Button, bool bCheck);
