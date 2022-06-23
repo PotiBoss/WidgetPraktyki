@@ -14,8 +14,6 @@ AMonsterBase::AMonsterBase()
 	SpriteComponent = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("Enemy Sprite Component"));
 
 	SetRootComponent(SpriteComponent);
-	
-	UE_LOG(LogTemp, Warning, TEXT("XD"));
 }
 // Called when the game starts or when spawned
 void AMonsterBase::BeginPlay()

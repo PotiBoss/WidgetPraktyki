@@ -4,7 +4,6 @@
 #include "MyPawn.h"
 
 #include "Blueprint/UserWidget.h"
-#include "Components/Overlay.h"
 
 // Sets default values
 AMyPawn::AMyPawn()
