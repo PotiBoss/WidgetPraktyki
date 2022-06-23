@@ -94,12 +94,14 @@ void UOptionsWidget::HDRumbleClicked(UButton* Button)
 		bHDRumble = false;
 		UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
 		ButtonImage->SetVisibility(ESlateVisibility::Collapsed);
+		Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController())->ChangeUIState(UI_Options);
 	}
 	else
 	{
 		bHDRumble = true;
 		UImage* ButtonImage = Cast<UImage>(Button->GetChildAt(0));
 		ButtonImage->SetVisibility(ESlateVisibility::Visible);
+		Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController())->ChangeUIState(UI_OptionsExtended);
 	}
 
 	if(GameInstance)
