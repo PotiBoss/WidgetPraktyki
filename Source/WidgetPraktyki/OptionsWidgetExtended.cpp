@@ -4,7 +4,6 @@
 #include "OptionsWidgetExtended.h"
 
 #include "MyGameInstance.h"
-#include "MyPlayerController.h"
 #include "Components/Button.h"
 #include "Components/Image.h"
 #include "Components/Slider.h"
