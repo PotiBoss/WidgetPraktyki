@@ -40,10 +40,16 @@ void UInventoryWidget::HideSoulInfo()
 	TextUseSolo->SetVisibility(ESlateVisibility::Collapsed);
 	TextDestroy->SetVisibility(ESlateVisibility::Collapsed);
 	TextDestroySolo->SetVisibility(ESlateVisibility::Collapsed);
+
+	ButtonUse->SetVisibility(ESlateVisibility::Collapsed);
+	ButtonDestroy->SetVisibility(ESlateVisibility::Collapsed);
+	ButtonUseSolo->SetVisibility(ESlateVisibility::Collapsed);
+	ButtonDestroySolo->SetVisibility(ESlateVisibility::Collapsed);
 }
 
 void UInventoryWidget::SelectSoul(FSoul Soul)
 {
+	HideSoulInfo();
 	ImageSoulDescription->SetBrushFromTexture(Soul.Image);
 	TextSoulName->SetText(Soul.Name);
 	TextSoulDescription->SetText(Soul.Name);
@@ -51,6 +57,42 @@ void UInventoryWidget::SelectSoul(FSoul Soul)
 	ImageSoulDescription->SetVisibility(ESlateVisibility::Visible);
 	TextSoulName->SetVisibility(ESlateVisibility::Visible);
 	TextSoulDescription->SetVisibility(ESlateVisibility::Visible);
+
+	switch(Soul.Option)
+	{
+	case Use:
+		ImageUseBgnSolo->SetVisibility(ESlateVisibility::Visible);
+		ImageUseFrameSolo->SetVisibility(ESlateVisibility::Visible);
+		TextUseSolo->SetVisibility(ESlateVisibility::Visible);
+		ButtonUseSolo->SetVisibility(ESlateVisibility::Visible);
+		break;
+	case Destroy:
+		ImageDestroyBgnSolo->SetVisibility(ESlateVisibility::Visible);
+		ImageDestroyFrameSolo->SetVisibility(ESlateVisibility::Visible);
+		TextDestroySolo->SetVisibility(ESlateVisibility::Visible);
+		ButtonDestroySolo->SetVisibility(ESlateVisibility::Visible);
+		break;
+	case UseAndDestroy:
+		ImageUseBgn->SetVisibility(ESlateVisibility::Visible);
+		ImageUseFrame->SetVisibility(ESlateVisibility::Visible);
+		ImageDestroyBgn->SetVisibility(ESlateVisibility::Visible);
+		ImageDestroyFrame->SetVisibility(ESlateVisibility::Visible);
+		ButtonDestroy->SetVisibility(ESlateVisibility::Visible);
+		TextDestroy->SetVisibility(ESlateVisibility::Visible);
+		TextUse->SetVisibility(ESlateVisibility::Visible);
+		ButtonUse->SetVisibility(ESlateVisibility::Visible);
+		break;
+	default:
+		ImageUseBgn->SetVisibility(ESlateVisibility::Visible);
+		ImageUseFrame->SetVisibility(ESlateVisibility::Visible);
+		ImageDestroyBgn->SetVisibility(ESlateVisibility::Visible);
+		ImageDestroyFrame->SetVisibility(ESlateVisibility::Visible);
+		ButtonDestroy->SetVisibility(ESlateVisibility::Visible);
+		TextDestroy->SetVisibility(ESlateVisibility::Visible);
+		TextUse->SetVisibility(ESlateVisibility::Visible);
+		ButtonUse->SetVisibility(ESlateVisibility::Visible);
+		break;
+	}
 }
 
 void UInventoryWidget::SetSoul(uint8 SoulIndex, uint8 RandomNumber)
@@ -58,6 +100,7 @@ void UInventoryWidget::SetSoul(uint8 SoulIndex, uint8 RandomNumber)
 	InventorySoulsButtons[SoulIndex].Image = InventorySoulsSprites[RandomNumber].Image;
 	InventorySoulsButtons[SoulIndex].Name = InventorySoulsSprites[RandomNumber].Name;
 	InventorySoulsButtons[SoulIndex].Description = InventorySoulsSprites[RandomNumber].Description;
+	InventorySoulsButtons[SoulIndex].Option = InventorySoulsSprites[RandomNumber].Option;
 
 	UImage* Image = Cast<UImage>(InventorySoulsButtons[SoulIndex].Button->GetChildAt(0));
 	Image->SetBrushFromTexture(InventorySoulsButtons[SoulIndex].Image);

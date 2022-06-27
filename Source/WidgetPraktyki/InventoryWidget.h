@@ -15,6 +15,14 @@ class UMyGameInstance;
 class UTexture2D;
 class UTextBlock;
 
+UENUM()
+enum ESoulOptions
+{
+	Use,
+	Destroy,
+	UseAndDestroy
+};
+
 USTRUCT(BlueprintType)
 struct FSoul
 {
@@ -31,6 +39,9 @@ struct FSoul
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UButton* Button = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TEnumAsByte<ESoulOptions> Option;
 };
 
 
@@ -106,6 +117,15 @@ protected:
 	UButton* ButtonSoul18;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UButton* ButtonSoul19;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonUse;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonDestroy;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonUseSolo;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UButton* ButtonDestroySolo;
 
 	// WIDGET IMAGES
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
