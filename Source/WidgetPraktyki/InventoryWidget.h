@@ -70,11 +70,20 @@ protected:
 	UFUNCTION()
 	void InitButtons();
 
+	UFUNCTION(BlueprintCallable)
+	void UseClicked();
+	
+	UFUNCTION(BlueprintCallable)
+	void DestroyClicked();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FSoul> InventorySoulsButtons;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FSoul> InventorySoulsSprites;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	uint8 SelectedSoulIndex = NULL;
 	
 	// WIDGET BUTTONS
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))

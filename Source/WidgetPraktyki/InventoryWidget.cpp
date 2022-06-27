@@ -140,3 +140,15 @@ void UInventoryWidget::InitButtons()
 		SoulIndex++;
 	}
 }
+
+void UInventoryWidget::UseClicked()
+{
+	InventorySoulsButtons[SelectedSoulIndex].Button->SetVisibility(ESlateVisibility::Collapsed);
+	HideSoulInfo();
+}
+
+void UInventoryWidget::DestroyClicked()
+{
+	InventorySoulsButtons[SelectedSoulIndex].Button->SetVisibility(ESlateVisibility::Collapsed);
+	HideSoulInfo();
+}
