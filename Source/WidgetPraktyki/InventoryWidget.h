@@ -14,6 +14,26 @@ class UImage;
 class UMyGameInstance;
 class UTexture2D;
 class UTextBlock;
+
+USTRUCT(BlueprintType)
+struct FSoul
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText Description;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UTexture2D* Image;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UButton* Button = nullptr;
+};
+
+
 UCLASS()
 class WIDGETPRAKTYKI_API UInventoryWidget : public UUserWidget
 {
@@ -30,17 +50,20 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void HideSoulInfo();
 
+	UFUNCTION(BlueprintCallable)	
+	void SelectSoul(FSoul Soul);
+
+	UFUNCTION(BlueprintCallable)	
+	void SetSoul(uint8 SoulIndex, uint8 RandomNumber);
+
 	UFUNCTION()
 	void InitButtons();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<uint8> InventorySoulsID;
+	TArray<FSoul> InventorySoulsButtons;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<UButton*> InventorySoulsButtons;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<UTexture2D*> InventorySoulsSprites;
+	TArray<FSoul> InventorySoulsSprites;
 	
 	// WIDGET BUTTONS
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
