@@ -13,6 +13,7 @@ class UButton;
 class UImage;
 class UMyGameInstance;
 class UTexture2D;
+class UTextBlock;
 UCLASS()
 class WIDGETPRAKTYKI_API UInventoryWidget : public UUserWidget
 {
@@ -22,6 +23,12 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void InitWidget();
+	
+	UFUNCTION(BlueprintCallable)
+	void QuitInventory();
+
+	UFUNCTION(BlueprintCallable)
+	void HideSoulInfo();
 
 	UFUNCTION()
 	void InitButtons();
@@ -76,4 +83,38 @@ protected:
 	UButton* ButtonSoul18;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UButton* ButtonSoul19;
+
+	// WIDGET IMAGES
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageSoulDescription;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageUseBgn;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageUseFrame;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageUseBgnSolo;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageUseFrameSolo;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageDestroyBgn;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageDestroyFrame;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageDestroyBgnSolo;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* ImageDestroyFrameSolo;
+
+	// WIDGET TEXT
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextSoulName;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextSoulDescription;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextUse;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextUseSolo;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextDestroy;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextDestroySolo;
 };

@@ -3,13 +3,43 @@
 
 #include "InventoryWidget.h"
 
+#include "MyPlayerController.h"
 #include "Components/Button.h"
 #include "Components/Image.h"
+#include "Components/TextBlock.h"
 
 
 void UInventoryWidget::InitWidget()
 {
 	InitButtons();
+	HideSoulInfo();
+}
+
+void UInventoryWidget::QuitInventory()
+{
+	AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController());
+
+	PlayerController->ChangeUIState(UI_InGame);
+}
+
+void UInventoryWidget::HideSoulInfo()
+{
+	ImageSoulDescription->SetVisibility(ESlateVisibility::Collapsed);
+	ImageUseBgn->SetVisibility(ESlateVisibility::Collapsed);
+	ImageUseFrame->SetVisibility(ESlateVisibility::Collapsed);
+	ImageUseBgnSolo->SetVisibility(ESlateVisibility::Collapsed);
+	ImageUseFrameSolo->SetVisibility(ESlateVisibility::Collapsed);
+	ImageDestroyBgn->SetVisibility(ESlateVisibility::Collapsed);
+	ImageDestroyFrame->SetVisibility(ESlateVisibility::Collapsed);
+	ImageDestroyBgnSolo->SetVisibility(ESlateVisibility::Collapsed);
+	ImageDestroyFrameSolo->SetVisibility(ESlateVisibility::Collapsed);
+
+	TextSoulName->SetVisibility(ESlateVisibility::Collapsed);
+	TextSoulDescription->SetVisibility(ESlateVisibility::Collapsed);
+	TextUse->SetVisibility(ESlateVisibility::Collapsed);
+	TextUseSolo->SetVisibility(ESlateVisibility::Collapsed);
+	TextDestroy->SetVisibility(ESlateVisibility::Collapsed);
+	TextDestroySolo->SetVisibility(ESlateVisibility::Collapsed);
 }
 
 void UInventoryWidget::InitButtons()
@@ -36,7 +66,6 @@ void UInventoryWidget::InitButtons()
 		InventorySoulsButtons.Add(ButtonSoul17);
 		InventorySoulsButtons.Add(ButtonSoul18);
 		InventorySoulsButtons.Add(ButtonSoul19);
-		
 	}
 	
 	for(int i = 0; i < InventorySoulsButtons.Num(); i++)
