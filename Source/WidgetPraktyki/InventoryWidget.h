@@ -76,6 +76,9 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void DestroyClicked();
 
+	UFUNCTION(BlueprintCallable)
+	void FocusAgain();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FSoul> InventorySoulsButtons;
 
@@ -84,6 +87,8 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	uint8 SelectedSoulIndex = NULL;
+
+	class UMyGameInstance* GameInstance;
 	
 	// WIDGET BUTTONS
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
