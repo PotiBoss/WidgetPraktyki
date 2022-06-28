@@ -34,6 +34,8 @@ public:
 	AMyPlayerController();
 
 	void UpdateUI();
+	
+	void HideInventory();
 
 	uint8 GetUIState();
 

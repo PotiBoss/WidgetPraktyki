@@ -28,7 +28,10 @@ public:
 	TArray<uint8> MonsterArrayID;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FSoul>InventorySoulsButtonsSave;
+	TArray<FSoul> InventorySoulsButtonsSave;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<uint8> InventoryIndexes;
 
 	UPROPERTY(BlueprintReadWrite)
 	bool bFirstInitGame = true;
@@ -54,5 +57,4 @@ public:
 	
 	UPROPERTY(BlueprintReadWrite)
 	bool bInverseY = false;
-	
 };

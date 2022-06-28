@@ -13,7 +13,8 @@
 void UInventoryWidget::InitWidget()
 {
 	GameInstance = Cast<UMyGameInstance>(GetGameInstance());
-	GameInstance->bFirstInitInventory ? InitButtons() : FocusAgain();
+	InitButtons(); 
+	if(!GameInstance->bFirstInitInventory){ FocusAgain(); }
 	HideSoulInfo();
 }
 
@@ -110,9 +111,9 @@ void UInventoryWidget::SetSoul(uint8 SoulIndex, uint8 RandomNumber)
 
 void UInventoryWidget::InitButtons()
 {
-	
 	InventorySoulsButtons.Init(FSoul(),20);
-	GameInstance->InventoryIndexes.Init(0, 20);
+	
+	if(GameInstance->bFirstInitInventory) {GameInstance->InventoryIndexes.Init(0, 20);}
 	
 	InventorySoulsButtons[0].Button = ButtonSoul0;
 	InventorySoulsButtons[1].Button = ButtonSoul1;
@@ -134,16 +135,10 @@ void UInventoryWidget::InitButtons()
 	InventorySoulsButtons[17].Button = ButtonSoul17;
 	InventorySoulsButtons[18].Button = ButtonSoul18;
 	InventorySoulsButtons[19].Button = ButtonSoul19;
+
+	if(GameInstance->bFirstInitInventory) {RandomizeSouls();}
 	
-	//int8 SoulIndex = 0;
-	
-	for(int i = 0; i < InventorySoulsButtons.Num(); i++)
-	{
-		int8 RandomSoul = FMath::RandRange(0,InventorySoulsSprites.Num() - 1);
-		GameInstance->InventoryIndexes[i] = RandomSoul;
-		SetSoul(i, RandomSoul);
-	//	SoulIndex++;
-	}
+	GameInstance->bFirstInitInventory = false;
 }
 
 void UInventoryWidget::UseClicked()
@@ -160,8 +155,24 @@ void UInventoryWidget::DestroyClicked()
 
 void UInventoryWidget::FocusAgain()
 {
-	for(int i = 0; i < InventorySoulsButtons.Num(); i++)
+	for(int i = 0; i < GameInstance->InventoryIndexes.Num(); i++)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Instance: %i"), GameInstance->InventoryIndexes[i]);
+	}
+	
+	for(int i = 0; i < GameInstance->InventoryIndexes.Num(); i++)
 	{
 		SetSoul(i, GameInstance->InventoryIndexes[i]);
+	}
+}
+
+void UInventoryWidget::RandomizeSouls()
+{
+	for(int i = 0; i < InventorySoulsButtons.Num(); i++)
+	{
+		int8 RandomSoul = FMath::RandRange(0,InventorySoulsSprites.Num() - 1);
+		GameInstance->InventoryIndexes[i] = RandomSoul;
+		SetSoul(i, RandomSoul);
+		UE_LOG(LogTemp, Warning, TEXT("Widget: %i"), RandomSoul);
 	}
 }

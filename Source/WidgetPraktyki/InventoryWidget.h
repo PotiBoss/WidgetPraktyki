@@ -35,7 +35,7 @@ struct FSoul
 	FText Description;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UTexture2D* Image;
+	UTexture2D* Image = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UButton* Button = nullptr;
@@ -79,6 +79,9 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void FocusAgain();
 
+	UFUNCTION(BlueprintCallable)
+	void RandomizeSouls();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FSoul> InventorySoulsButtons;
 
@@ -88,6 +91,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	uint8 SelectedSoulIndex = NULL;
 
+	UPROPERTY()
 	class UMyGameInstance* GameInstance;
 	
 	// WIDGET BUTTONS
