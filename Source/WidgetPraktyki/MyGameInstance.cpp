@@ -9,6 +9,7 @@ UMyGameInstance::UMyGameInstance()
 {
 	MonsterArrayID = {0,0,0};
 	InventorySoulsButtonsSave.Init(FSoul(),20);
+	InventorybHidden.Init(false,20);
 }
 
 void UMyGameInstance::OnGameWidgetQuit(TArray<uint8> MonsterArray)

@@ -33,6 +33,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<uint8> InventoryIndexes;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<bool> InventorybHidden;
+
 	UPROPERTY(BlueprintReadWrite)
 	bool bFirstInitGame = true;
 

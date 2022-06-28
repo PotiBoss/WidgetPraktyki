@@ -35,7 +35,7 @@ public:
 
 	void UpdateUI();
 	
-	void HideInventory();
+	void HideInventory(TEnumAsByte<EUIState> EnumUIState);
 
 	uint8 GetUIState();
 

@@ -10,6 +10,8 @@
 #include "Components/TextBlock.h"
 
 
+// Lasciate ogne speranza, voi ch’intrate.
+
 void UInventoryWidget::InitWidget()
 {
 	GameInstance = Cast<UMyGameInstance>(GetGameInstance());
@@ -144,12 +146,14 @@ void UInventoryWidget::InitButtons()
 void UInventoryWidget::UseClicked()
 {
 	InventorySoulsButtons[SelectedSoulIndex].Button->SetVisibility(ESlateVisibility::Collapsed);
+	GameInstance->InventorybHidden[SelectedSoulIndex] = true;
 	HideSoulInfo();
 }
 
 void UInventoryWidget::DestroyClicked()
 {
 	InventorySoulsButtons[SelectedSoulIndex].Button->SetVisibility(ESlateVisibility::Collapsed);
+	GameInstance->InventorybHidden[SelectedSoulIndex] = true;
 	HideSoulInfo();
 }
 
@@ -157,12 +161,15 @@ void UInventoryWidget::FocusAgain()
 {
 	for(int i = 0; i < GameInstance->InventoryIndexes.Num(); i++)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Instance: %i"), GameInstance->InventoryIndexes[i]);
-	}
-	
-	for(int i = 0; i < GameInstance->InventoryIndexes.Num(); i++)
-	{
-		SetSoul(i, GameInstance->InventoryIndexes[i]);
+		if(!GameInstance->InventorybHidden[i])
+		{
+			SetSoul(i, GameInstance->InventoryIndexes[i]);
+		}
+		else
+		{
+			InventorySoulsButtons[i].Button->SetVisibility(ESlateVisibility::Collapsed);
+		}
+		
 	}
 }
 
@@ -173,6 +180,5 @@ void UInventoryWidget::RandomizeSouls()
 		int8 RandomSoul = FMath::RandRange(0,InventorySoulsSprites.Num() - 1);
 		GameInstance->InventoryIndexes[i] = RandomSoul;
 		SetSoul(i, RandomSoul);
-		UE_LOG(LogTemp, Warning, TEXT("Widget: %i"), RandomSoul);
 	}
 }

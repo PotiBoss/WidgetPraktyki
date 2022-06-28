@@ -51,6 +51,16 @@ void AMyPlayerController::UpdateUI()
 	}
 }
 
+void AMyPlayerController::HideInventory(TEnumAsByte<EUIState> EnumUIState)
+{
+	UIStateEnum = EnumUIState;
+
+	if(CurrentWidget != nullptr)
+	{
+		CurrentWidget->SetVisibility(ESlateVisibility::Collapsed);
+	}
+}
+
 uint8 AMyPlayerController::GetUIState()
 {
 	return UIStateEnum;
