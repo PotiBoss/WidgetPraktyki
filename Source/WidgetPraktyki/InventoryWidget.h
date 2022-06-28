@@ -14,6 +14,7 @@ class UImage;
 class UMyGameInstance;
 class UTexture2D;
 class UTextBlock;
+class UCanvasPanel;
 
 UENUM()
 enum ESoulOptions
@@ -75,6 +76,12 @@ protected:
 	
 	UFUNCTION(BlueprintCallable)
 	void DestroyClicked();
+
+	UFUNCTION(BlueprintCallable)
+	void NoClicked();
+
+	UFUNCTION(BlueprintCallable)
+	void YesClicked();
 
 	UFUNCTION(BlueprintCallable)
 	void FocusAgain();
@@ -178,4 +185,10 @@ protected:
 	UTextBlock* TextDestroy;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UTextBlock* TextDestroySolo;
+
+	// CANVAS
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UCanvasPanel* CanvasDestroy;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UCanvasPanel* CanvasUse;
 };

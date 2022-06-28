@@ -6,11 +6,13 @@
 #include "MyGameInstance.h"
 #include "MyPlayerController.h"
 #include "Components/Button.h"
+#include "Components/CanvasPanel.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
 
 
 // Lasciate ogne speranza, voi ch’intrate.
+
 
 void UInventoryWidget::InitWidget()
 {
@@ -145,16 +147,27 @@ void UInventoryWidget::InitButtons()
 
 void UInventoryWidget::UseClicked()
 {
-	InventorySoulsButtons[SelectedSoulIndex].Button->SetVisibility(ESlateVisibility::Collapsed);
-	GameInstance->InventorybHidden[SelectedSoulIndex] = true;
-	HideSoulInfo();
+	CanvasUse->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 }
 
 void UInventoryWidget::DestroyClicked()
 {
+	CanvasDestroy->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+}
+
+void UInventoryWidget::NoClicked()
+{
+	CanvasDestroy->SetVisibility(ESlateVisibility::Collapsed);
+	CanvasUse->SetVisibility(ESlateVisibility::Collapsed);
+}
+
+void UInventoryWidget::YesClicked()
+{
 	InventorySoulsButtons[SelectedSoulIndex].Button->SetVisibility(ESlateVisibility::Collapsed);
 	GameInstance->InventorybHidden[SelectedSoulIndex] = true;
 	HideSoulInfo();
+	CanvasDestroy->SetVisibility(ESlateVisibility::Collapsed);
+	CanvasUse->SetVisibility(ESlateVisibility::Collapsed);
 }
 
 void UInventoryWidget::FocusAgain()
