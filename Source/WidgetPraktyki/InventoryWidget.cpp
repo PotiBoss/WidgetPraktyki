@@ -112,6 +112,7 @@ void UInventoryWidget::InitButtons()
 {
 	
 	InventorySoulsButtons.Init(FSoul(),20);
+	GameInstance->InventoryIndexes.Init(0, 20);
 	
 	InventorySoulsButtons[0].Button = ButtonSoul0;
 	InventorySoulsButtons[1].Button = ButtonSoul1;
@@ -139,6 +140,7 @@ void UInventoryWidget::InitButtons()
 	for(int i = 0; i < InventorySoulsButtons.Num(); i++)
 	{
 		int8 RandomSoul = FMath::RandRange(0,InventorySoulsSprites.Num() - 1);
+		GameInstance->InventoryIndexes[i] = RandomSoul;
 		SetSoul(i, RandomSoul);
 	//	SoulIndex++;
 	}
@@ -160,9 +162,6 @@ void UInventoryWidget::FocusAgain()
 {
 	for(int i = 0; i < InventorySoulsButtons.Num(); i++)
 	{
-		int8 RandomSoul = FMath::RandRange(0,InventorySoulsSprites.Num() - 1);
-		SetSoul(i, RandomSoul);
+		SetSoul(i, GameInstance->InventoryIndexes[i]);
 	}
 }
-
-
