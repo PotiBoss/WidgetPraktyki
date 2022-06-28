@@ -108,6 +108,7 @@ void UInventoryWidget::SetSoul(uint8 SoulIndex, uint8 RandomNumber)
 	InventorySoulsButtons[SoulIndex].Name = InventorySoulsSprites[RandomNumber].Name;
 	InventorySoulsButtons[SoulIndex].Description = InventorySoulsSprites[RandomNumber].Description;
 	InventorySoulsButtons[SoulIndex].Option = InventorySoulsSprites[RandomNumber].Option;
+	
 
 	UImage* Image = Cast<UImage>(InventorySoulsButtons[SoulIndex].Button->GetChildAt(0));
 	Image->SetBrushFromTexture(InventorySoulsButtons[SoulIndex].Image);
@@ -148,11 +149,24 @@ void UInventoryWidget::InitButtons()
 void UInventoryWidget::UseClicked()
 {
 	CanvasUse->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+	TextUseSoulVariable->SetText(InventorySoulsSprites[SelectedSoulIndex].Name);
 }
 
 void UInventoryWidget::DestroyClicked()
 {
 	CanvasDestroy->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+	TextDestroySoulVariable->SetText(InventorySoulsSprites[SelectedSoulIndex].Name);
+}
+
+void UInventoryWidget::CantUse()
+{
+	CanvasCantUse->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+}
+
+void UInventoryWidget::CantOkUse()
+{
+	CanvasCantUse->SetVisibility(ESlateVisibility::Collapsed);
+	CanvasUse->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 }
 
 void UInventoryWidget::NoClicked()
@@ -163,9 +177,16 @@ void UInventoryWidget::NoClicked()
 
 void UInventoryWidget::YesClicked()
 {
+	if(GameInstance->Location != InventorySoulsSprites[SelectedSoulIndex].Location && CanvasUse->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
+	{
+		CantUse();
+		return;
+	}
+	
 	InventorySoulsButtons[SelectedSoulIndex].Button->SetVisibility(ESlateVisibility::Collapsed);
 	GameInstance->InventorybHidden[SelectedSoulIndex] = true;
 	HideSoulInfo();
+	
 	CanvasDestroy->SetVisibility(ESlateVisibility::Collapsed);
 	CanvasUse->SetVisibility(ESlateVisibility::Collapsed);
 }
@@ -182,7 +203,6 @@ void UInventoryWidget::FocusAgain()
 		{
 			InventorySoulsButtons[i].Button->SetVisibility(ESlateVisibility::Collapsed);
 		}
-		
 	}
 }
 

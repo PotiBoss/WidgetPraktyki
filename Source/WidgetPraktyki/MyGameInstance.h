@@ -10,6 +10,7 @@
 /**
  * 
  */
+
 UCLASS()
 class WIDGETPRAKTYKI_API UMyGameInstance : public UGameInstance
 {
@@ -42,6 +43,9 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	bool bFirstInitInventory = true;
 
+	UPROPERTY(BlueprintReadWrite)
+	TEnumAsByte<ESoulLocation> Location = CITY;
+
 	// OPTIONS
 	UPROPERTY(BlueprintReadWrite)
 	float EffectsFloat = 0.0f;
@@ -60,4 +64,5 @@ public:
 	
 	UPROPERTY(BlueprintReadWrite)
 	bool bInverseY = false;
+	
 };

@@ -24,6 +24,16 @@ enum ESoulOptions
 	UseAndDestroy
 };
 
+UENUM()
+enum ESoulLocation
+{
+	SWAMPS,
+	DUNGEON,
+	CASTLE,
+	CITY,
+	TOWER
+};
+
 USTRUCT(BlueprintType)
 struct FSoul
 {
@@ -43,6 +53,9 @@ struct FSoul
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TEnumAsByte<ESoulOptions> Option;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TEnumAsByte<ESoulLocation> Location;
 };
 
 
@@ -76,6 +89,12 @@ protected:
 	
 	UFUNCTION(BlueprintCallable)
 	void DestroyClicked();
+	
+	UFUNCTION(BlueprintCallable)
+	void CantUse();
+
+	UFUNCTION(BlueprintCallable)
+	void CantOkUse();
 
 	UFUNCTION(BlueprintCallable)
 	void NoClicked();
@@ -185,10 +204,16 @@ protected:
 	UTextBlock* TextDestroy;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UTextBlock* TextDestroySolo;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextUseSoulVariable;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UTextBlock* TextDestroySoulVariable;
 
 	// CANVAS
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UCanvasPanel* CanvasDestroy;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UCanvasPanel* CanvasUse;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UCanvasPanel* CanvasCantUse;
 };
