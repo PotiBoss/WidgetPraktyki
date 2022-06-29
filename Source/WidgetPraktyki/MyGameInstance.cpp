@@ -7,7 +7,7 @@
 
 UMyGameInstance::UMyGameInstance()
 {
-	MonsterArrayID = {0,0,0};
+	MonsterArrayID.Init(0, 3);
 	InventorySoulsButtonsSave.Init(FSoul(),20);
 	InventorybHidden.Init(false,20);
 }

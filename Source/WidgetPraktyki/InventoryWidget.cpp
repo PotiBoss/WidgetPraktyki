@@ -54,12 +54,13 @@ void UInventoryWidget::HideSoulInfo()
 	ButtonDestroySolo->SetVisibility(ESlateVisibility::Collapsed);
 }
 
+// Shows soul info for the currently selected soul
 void UInventoryWidget::SelectSoul(FSoul Soul)
 {
 	HideSoulInfo();
 	ImageSoulDescription->SetBrushFromTexture(Soul.Image);
 	TextSoulName->SetText(Soul.Name);
-	TextSoulDescription->SetText(Soul.Name);
+	TextSoulDescription->SetText(Soul.Description);
 
 	ImageSoulDescription->SetVisibility(ESlateVisibility::Visible);
 	TextSoulName->SetVisibility(ESlateVisibility::Visible);
@@ -102,6 +103,7 @@ void UInventoryWidget::SelectSoul(FSoul Soul)
 	}
 }
 
+// Sets soul data on every inventory opening
 void UInventoryWidget::SetSoul(uint8 SoulIndex, uint8 RandomNumber)
 {
 	InventorySoulsButtons[SoulIndex].Image = InventorySoulsSprites[RandomNumber].Image;
@@ -146,16 +148,26 @@ void UInventoryWidget::InitButtons()
 	GameInstance->bFirstInitInventory = false;
 }
 
+void UInventoryWidget::ButtonHovered(UImage* Image)
+{
+	Image->SetColorAndOpacity(FLinearColor(0.35f, 0.35f, 0.35f)); // tinted
+}
+
+void UInventoryWidget::ButtonUnhovered(UImage* Image)
+{
+	Image->SetColorAndOpacity(FLinearColor(1.0f, 1.0f, 1.0f)); // normal
+}
+
 void UInventoryWidget::UseClicked()
 {
 	CanvasUse->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
-	TextUseSoulVariable->SetText(InventorySoulsSprites[SelectedSoulIndex].Name);
+	TextUseSoulVariable->SetText(InventorySoulsButtons[SelectedSoulIndex].Name);
 }
 
 void UInventoryWidget::DestroyClicked()
 {
 	CanvasDestroy->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
-	TextDestroySoulVariable->SetText(InventorySoulsSprites[SelectedSoulIndex].Name);
+	TextDestroySoulVariable->SetText(InventorySoulsButtons[SelectedSoulIndex].Name);
 }
 
 void UInventoryWidget::CantUse()
@@ -177,7 +189,7 @@ void UInventoryWidget::NoClicked()
 
 void UInventoryWidget::YesClicked()
 {
-	if(GameInstance->Location != InventorySoulsSprites[SelectedSoulIndex].Location && CanvasUse->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
+	if(GameInstance->Location != InventorySoulsButtons[SelectedSoulIndex].Location && CanvasUse->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
 	{
 		CantUse();
 		return;
@@ -191,6 +203,7 @@ void UInventoryWidget::YesClicked()
 	CanvasUse->SetVisibility(ESlateVisibility::Collapsed);
 }
 
+// Load inventory on subsequent opens
 void UInventoryWidget::FocusAgain()
 {
 	for(int i = 0; i < GameInstance->InventoryIndexes.Num(); i++)

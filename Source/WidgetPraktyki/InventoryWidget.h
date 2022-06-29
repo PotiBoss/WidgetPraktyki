@@ -85,6 +85,12 @@ protected:
 	void InitButtons();
 
 	UFUNCTION(BlueprintCallable)
+	void ButtonHovered(UImage* Image);
+
+	UFUNCTION(BlueprintCallable)
+	void ButtonUnhovered(UImage* Image);
+
+	UFUNCTION(BlueprintCallable)
 	void UseClicked();
 	
 	UFUNCTION(BlueprintCallable)
