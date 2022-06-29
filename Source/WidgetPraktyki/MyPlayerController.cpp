@@ -66,6 +66,11 @@ uint8 AMyPlayerController::GetUIState()
 	return UIStateEnum;
 }
 
+uint8 AMyPlayerController::GetUIStateCheck(TEnumAsByte<EUIState> EnumUIState)
+{
+	return EnumUIState;
+}
+
 void AMyPlayerController::ChangeUIState(TEnumAsByte<EUIState> EnumUIState)
 {
 	UIStateEnum = EnumUIState;

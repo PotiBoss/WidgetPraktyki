@@ -16,6 +16,7 @@
 
 void UInventoryWidget::InitWidget()
 {
+	UE_LOG(LogTemp,Warning,TEXT("inventory open"));
 	GameInstance = Cast<UMyGameInstance>(GetGameInstance());
 	InitButtons(); 
 	if(!GameInstance->bFirstInitInventory){ FocusAgain(); }

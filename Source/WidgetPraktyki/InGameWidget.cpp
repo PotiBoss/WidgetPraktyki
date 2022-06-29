@@ -55,6 +55,16 @@ void UInGameWidget::OnWidgetFocusAgain(TArray<uint8> MonsterArrayCopy)
 	RespawnNewMonster();
 }
 
+void UInGameWidget::ChangeFocus(UButton* Button)
+{
+	Button->SetFocus();
+	UImage* ImageBackground = Cast<UImage>(Button->GetChildAt(0));
+	if(ImageBackground)
+	{
+		ImageBackground->SetColorAndOpacity(FLinearColor(0.8f, 0.2f, 0.2f));
+	}
+}
+
 void UInGameWidget::SpawnNewMonster(uint8 MonsterIndex)
 {
 	if(MonsterArray.Num() < 1) {return;}

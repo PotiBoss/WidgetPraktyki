@@ -6,6 +6,11 @@
 #include "Blueprint/UserWidget.h"
 #include "InGameWidget.generated.h"
 
+class UButton;
+class UImage;
+class UTexture2D;
+class UTextBlock;
+
 /**
  * 
  */
@@ -24,8 +29,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void OnWidgetFocusAgain(TArray<uint8> MonsterArrayCopy);
 
+	UFUNCTION(BlueprintCallable)
+	void ChangeFocus(UButton* Button);
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<uint8> MonsterArrayID;
+		
+	UPROPERTY(EditAnywhere)
+	TArray<UTexture2D*> MonsterArray;
 
 protected:
 	UFUNCTION(BlueprintCallable)
@@ -36,12 +47,9 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	float RespawnTime = 1.0f;
-	
-	UPROPERTY(EditAnywhere)
-	TArray<class UTexture2D*> MonsterArray;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	class UImage* MonsterImageLeft;
+	UImage* MonsterImageLeft;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UImage* MonsterImageMid;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
@@ -52,7 +60,7 @@ protected:
 
 	// WIDGET BUTTONS
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	class UButton* ButtonBowLeft;
+	UButton* ButtonBowLeft;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UButton* ButtonBowMid;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
@@ -114,9 +122,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	class UTextBlock* TextCombatLeft;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	class UTextBlock* TextCombatMid;
+	UTextBlock* TextCombatMid;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	class UTextBlock* TextCombatRight;
+	UTextBlock* TextCombatRight;
 	
 
 	FTimerHandle TimerHandleLeft;

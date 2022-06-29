@@ -37,7 +37,11 @@ public:
 	
 	void HideInventory(TEnumAsByte<EUIState> EnumUIState);
 
+	UFUNCTION(BlueprintCallable)
 	uint8 GetUIState();
+
+	UFUNCTION(BlueprintCallable)
+	uint8 GetUIStateCheck(TEnumAsByte<EUIState> EnumUIState);
 
 	UFUNCTION(BlueprintCallable, Category = "UI")
 	void ChangeUIState(TEnumAsByte<EUIState> EnumUIState);
@@ -51,6 +55,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	UUserWidget* PauseWidget;
 
+	UPROPERTY(BlueprintReadWrite, Category = "UI")
+	class UUserWidget* CurrentWidget;
 
 protected:
 	// Called when the game starts or when spawned
@@ -70,9 +76,5 @@ protected:
 	TSubclassOf<class UUserWidget> ReadMeClass;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI", Meta = (BlueprintProtected = "true"))
 	TSubclassOf<class UUserWidget> CreditsClass;
-	
-
-	UPROPERTY()
-	class UUserWidget* CurrentWidget;
 };
 
